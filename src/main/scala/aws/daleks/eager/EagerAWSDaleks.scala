@@ -38,7 +38,47 @@ object EagerAWSDaleks extends App {
     .par
     .foreach { implicit region =>
       println("Preparing extermination of region ["+region+"]")
-      List(new EagerS3Dalek,
+      List(
+        // missing: ECS
+        // missing: Lambda
+        // missing: CloudFront
+        // missing: EFS
+        // missing: Glacier
+        // missing: RedShift
+        // missing: DMS
+        // missing: CodeCommit
+        // missing: CodeDeploy
+        // missing: CodePipeline
+        // missing: CloudWatch
+        // missing: CloudTrail
+        // missing: Config
+        // missing: OpsWorks
+        // missing: ServiceCatalog
+        // missing: ServiceCatalog
+        // missing: DirectoryService
+        // missing: Inspector
+        // missing: WAF
+        // missing: CertificateManager
+        // missing: DataPipeline
+        // missing: ElasticSearch
+        // missing: Kinesis
+        // missing: MachineLearning
+        // missing: IoT
+        // missing: GameLift
+        // missing: MobileHub
+        // missing: Cognito
+        // missing: DeviceFarm
+        // missing: MobileAnalytics
+        // missing: APIGateway
+        // missing: AppStream
+        // missing: CloudSearch
+        // missing: ElasticTranscoder
+        // missing: SES
+        // missing: SWF
+        // missing: WorkSpaces
+        // missing: WorkDocs
+        // missing: WorkMail
+
         new EagerBeanstalkDalek,
         new EagerCloudFormationDalek,
         new EagerDynamoDBDalek,        
