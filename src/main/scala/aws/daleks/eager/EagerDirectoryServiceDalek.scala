@@ -12,13 +12,13 @@ class EagerDirectoryServiceDalek(implicit region: Region, credentials: AWSCreden
 
   def exterminate = {
     val directories = ds.describeDirectories.getDirectoryDescriptions asScala 
+    //TODO: include AWS internal account in exclusion list
     
     directories.foreach { dir =>
       try {
         info(this,"** Exterminating Directory " + dir.getDirectoryId)
         Humid {
-          //ds.deleteDirectory(new DeleteDirectoryRequest().withDirectoryId(dir.getDirectoryId()))
-          //TODO include AWS internal account in exclusion list
+          ds.deleteDirectory(new DeleteDirectoryRequest().withDirectoryId(dir.getDirectoryId()))
         }
       } catch {
         case e: Exception => println(s"! Failed to exterminate Directory Service ${dir.getDirectoryId}: ${e.getMessage()}")

@@ -78,7 +78,7 @@ object EagerAWSDaleks extends App {
         // missing: WorkDocs
         // missing: WorkMail
 
-        new EagerDirectoryServiceDalek,
+        //new EagerDirectoryServiceDalek,
         new EagerBeanstalkDalek,
         new EagerCloudFormationDalek,
         new EagerDynamoDBDalek,        
