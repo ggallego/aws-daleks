@@ -13,11 +13,15 @@ class EagerSNSDalek(implicit region: Region, credentials: AWSCredentialsProvider
   val sns = withRegion(new AmazonSNSClient(credentials),region)
 
   def exterminate = {
-    val topics = sns.listTopics.getTopics asScala 
+    val topics = sns.listTopics.getTopics.asScala filter { t =>
+    	!t.getTopicArn().endsWith("DO-NOT-DELETE")
+  	}
     
     topics.foreach { t =>
-      println("** Exterminating SNS Topic " + t.getTopicArn())
-      Humid {sns.deleteTopic(t.getTopicArn())}
+      info(this, "** Exterminating SNS Topic " + t.getTopicArn())
+      Humid {
+      	sns.deleteTopic(t.getTopicArn())
+      }
     }
   }
 }
