@@ -55,7 +55,6 @@ object EagerAWSDaleks extends App {
         // missing: OpsWorks
         // missing: ServiceCatalog
         // missing: ServiceCatalog
-        // missing: DirectoryService
         // missing: Inspector
         // missing: WAF
         // missing: CertificateManager
@@ -79,6 +78,7 @@ object EagerAWSDaleks extends App {
         // missing: WorkDocs
         // missing: WorkMail
 
+        new EagerDirectoryServiceDalek,
         new EagerBeanstalkDalek,
         new EagerCloudFormationDalek,
         new EagerDynamoDBDalek,        
