@@ -41,8 +41,9 @@ class EagerIAMDalek(implicit credentials: AWSCredentialsProvider) extends Dalek 
     !u.getUserName().endsWith("DO-NOT-DELETE")
   }
 
-  def roles = iam.listRoles().getRoles() asScala filter { r => 
-    !r.getRoleName().endsWith("DO-NOT-DELETE")
+  def roles = iam.listRoles().getRoles().asScala filter { r => 
+    !r.getRoleName().endsWith("DO-NOT-DELETE") && 
+    !r.getRoleName().startsWith("aws-quicksight")
   }
 
   def groups = iam.listGroups().getGroups() asScala
