@@ -124,7 +124,9 @@ class EagerEC2Dalek(implicit region: Region, credentials: AWSCredentialsProvider
   }
 
   def exterminateAMIs = {
-    val amis = ec2.describeImages(new DescribeImagesRequest().withOwners("self")).getImages().asScala
+    val amis = ec2.describeImages(new DescribeImagesRequest().withOwners("self")).getImages().asScala filter { a =>
+      !a.getName().endsWith("DO-NOT-DELETE")
+    }
     amis foreach { ami =>
       try {
         info(this, s"** Exterminating Image [${ami.getImageId}] [${ami.getName}]")
