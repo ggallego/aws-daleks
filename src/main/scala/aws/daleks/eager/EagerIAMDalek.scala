@@ -38,10 +38,13 @@ class EagerIAMDalek(implicit credentials: AWSCredentialsProvider) extends Dalek 
   val iam = new AmazonIdentityManagementClient(credentials);
 
   def users = iam.listUsers().getUsers().asScala filter { u =>
-    !"dalek".equals(u.getUserName())
+    !u.getUserName().endsWith("DO-NOT-DELETE")
   }
 
-  def roles = iam.listRoles().getRoles() asScala
+  def roles = iam.listRoles().getRoles() asScala filter { r => 
+    !r.getRoleName().endsWith("DO-NOT-DELETE")
+  }
+
   def groups = iam.listGroups().getGroups() asScala
 
   def exterminate = {
