@@ -22,7 +22,10 @@ class EagerS3Dalek(implicit region: Region, credentials: AWSCredentialsProvider)
 
   def buckets = (s3.listBuckets.asScala).filter { bucket =>
     val name = bucket.getName
-    val keep =  name.startsWith("logs")  || name.startsWith("billing") || name.startsWith("share") || name.endsWith("do-not-delete")
+    val keep =  name.startsWith("logs") || 
+                name.startsWith("billing") || 
+                name.startsWith("share") || 
+                name.endsWith("do-not-delete")
     !keep
   }.filter { bucket =>
     val locStr = s3.getBucketLocation(bucket.getName)
