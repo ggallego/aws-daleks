@@ -7,7 +7,7 @@ import com.amazonaws.regions.Region
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain
 import com.amazonaws.auth.profile.ProfileCredentialsProvider
 
-object EagerAWSDaleks {  
+object EagerAWSDaleks extends App{  
   println("EXTERMINATE!")
   
   def findArg(arg:String):Option[String] = {
