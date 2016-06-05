@@ -45,7 +45,9 @@ class EagerIAMDalek(implicit credentials: AWSCredentialsProvider) extends Dalek 
     !r.getRoleName().endsWith("DO-NOT-DELETE")
   }
 
-  def groups = iam.listGroups().getGroups() asScala
+  def groups = iam.listGroups().getGroups().asScala filter { r => 
+    !r.getGroupName().endsWith("DO-NOT-DELETE")
+  }
 
   def exterminate = {
 
